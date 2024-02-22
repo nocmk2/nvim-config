@@ -5,4 +5,5 @@
 -- vim.g.mapleader = ","autoformat = true,
 --
 --
+vim.g.mapleader = ","
 vim.g.autoformat = true
