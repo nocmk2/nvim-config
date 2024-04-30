@@ -83,10 +83,21 @@ local vmappings = {
     -- c = { 'y:<C-u>split|terminal odpscmdcn -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "CN北京odps" },
     -- h = { 'y:<C-u>split|terminal odpscmdhk -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "香港odps" },
     --
-    s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdsg -f temp.sql|tee ~/odps_temp.sql<cr>', "新加坡odps" },
-    t = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdtap -f temp.sql|tee ~/odps_temp.sql<cr>', "taptap北京odps" },
-    c = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdcn -f temp.sql|tee ~/odps_temp.sql<cr>', "CN北京odps" },
-    h = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdhk -f temp.sql|tee ~/odps_temp.sql<cr>', "香港odps" },
+    -- s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql<cr>', "新加坡odps" },
+--     This appears to be a series of commands possibly for a text editor or a shell script, followed by the phrase "Singapore odps".
+--
+-- The commands are:
+-- - `:<C-u>\'<,\'>w! temp.sql` - Write the currently selected text to a file named `temp.sql`.
+-- - `|split` - Split the view in the editor or open a new window in the terminal.
+-- - `|terminal cat temp.sql` - Open a terminal and display the contents of `temp.sql`.
+-- - `|odpscmdsg -f temp.sql` - Execute the `odpscmdsg` command with `temp.sql` as input.
+-- - `|tee ~/odps_temp.sql<cr>` - Redirect the output to a file named `odps_temp.sql` in the home directory and also display it.
+-- The phrase "新加坡odps" translates to "Singapore ODPS," which likely refers to the Alibaba Cloud's Open Data Processing Service (ODPS) in Singapore.
+    s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdsg -f temp.sql|tee ~/odps_temp.sql<cr>', "新加坡odps" },
+    -- s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql|odpscmdsg -f temp.sql|tee ~/odps_temp.sql<cr>', "新加坡odps" },
+    t = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdtap -f temp.sql|tee ~/odps_temp.sql<cr>', "taptap北京odps" },
+    c = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdcn -f temp.sql|tee ~/odps_temp.sql<cr>', "CN北京odps" },
+    h = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdhk -f temp.sql|tee ~/odps_temp.sql<cr>', "香港odps" },
     -- x = { 'y:<C-u>echo <C-r>%<cr>', "新加坡odps"}
   },
   u = {
