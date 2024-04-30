@@ -19,9 +19,12 @@ local opts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 local mappings = {
-  x = {
-    "<cmd>r ~/odps_temp.sql<cr>",
-    "Open Odps Result File",
+  k = {
+    name = "sql buffer",
+    k = {
+      "<cmd>r ~/odps_temp.sql<cr>",
+      "Open Odps Result File",
+    },
   },
   i = {
     name = "Insert",
@@ -75,10 +78,15 @@ local vmappings = {
     -- s = {'<cmd><C-u>split|terminal odpscmd -e "<C-r>0"'},
     -- s = { '<esc><cmd>1split|terminal odpscmdsg -e "<C-r><C-w>"<cr>', "SG" },
     -- s = { '<esc><cmd>split|terminal odpscmdsg -e "<C-r>0"<cr>', "SG" },
-    s = { 'y:<C-u>split|terminal odpscmdsg -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "新加坡odps" },
-    t = { 'y:<C-u>split|terminal odpscmdtap -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "taptap北京odps" },
-    c = { 'y:<C-u>split|terminal odpscmdcn -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "CN北京odps" },
-    h = { 'y:<C-u>split|terminal odpscmdhk -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "香港odps" },
+    -- s = { 'y:<C-u>split|terminal odpscmdsg -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "新加坡odps" },
+    -- t = { 'y:<C-u>split|terminal odpscmdtap -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "taptap北京odps" },
+    -- c = { 'y:<C-u>split|terminal odpscmdcn -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "CN北京odps" },
+    -- h = { 'y:<C-u>split|terminal odpscmdhk -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "香港odps" },
+    --
+    s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdsg -f temp.sql|tee ~/odps_temp.sql<cr>', "新加坡odps" },
+    t = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdtap -f temp.sql|tee ~/odps_temp.sql<cr>', "taptap北京odps" },
+    c = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdcn -f temp.sql|tee ~/odps_temp.sql<cr>', "CN北京odps" },
+    h = { ':<C-u>\'<,\'>w! temp.sql|split|terminal odpscmdhk -f temp.sql|tee ~/odps_temp.sql<cr>', "香港odps" },
     -- x = { 'y:<C-u>echo <C-r>%<cr>', "新加坡odps"}
   },
   u = {

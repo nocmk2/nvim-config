@@ -6,4 +6,9 @@
 --
 --
 vim.g.mapleader = ","
-vim.g.autoformat = true
+vim.g.autoformat = false
+vim.opt.listchars = {
+  tab = "> ",
+  trail = " ",
+  nbsp = "+",
+}
