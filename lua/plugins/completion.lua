@@ -1,4 +1,4 @@
--- local completion = {
+local completion = {
 --   "hrsh7th/nvim-cmp",
 --   event = "InsertEnter",
 --   dependencies = {
@@ -8,7 +8,7 @@
 --     { "hrsh7th/cmp-vsnip" },
 --     { "lukas-reineke/cmp-rg" },
 --   },
--- }
+}
 -- completion.config = function()
 --   local utils = require("utils")
 --   local cmp = require("cmp")
@@ -149,4 +149,4 @@
 --   return completion
 -- end
 --
--- return completion
+return completion
