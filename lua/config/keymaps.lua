@@ -75,30 +75,86 @@ local vmappings = {
   },
   o = {
     name = "Odpscmd",
-    -- s = {'<cmd><C-u>split|terminal odpscmd -e "<C-r>0"'},
-    -- s = { '<esc><cmd>1split|terminal odpscmdsg -e "<C-r><C-w>"<cr>', "SG" },
-    -- s = { '<esc><cmd>split|terminal odpscmdsg -e "<C-r>0"<cr>', "SG" },
-    -- s = { 'y:<C-u>split|terminal odpscmdsg -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "新加坡odps" },
-    -- t = { 'y:<C-u>split|terminal odpscmdtap -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "taptap北京odps" },
-    -- c = { 'y:<C-u>split|terminal odpscmdcn -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "CN北京odps" },
-    -- h = { 'y:<C-u>split|terminal odpscmdhk -e "<C-r>*"|tee ~/odps_temp.sql<cr>', "香港odps" },
-    --
-    -- s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql<cr>', "新加坡odps" },
---     This appears to be a series of commands possibly for a text editor or a shell script, followed by the phrase "Singapore odps".
---
--- The commands are:
--- - `:<C-u>\'<,\'>w! temp.sql` - Write the currently selected text to a file named `temp.sql`.
--- - `|split` - Split the view in the editor or open a new window in the terminal.
--- - `|terminal cat temp.sql` - Open a terminal and display the contents of `temp.sql`.
--- - `|odpscmdsg -f temp.sql` - Execute the `odpscmdsg` command with `temp.sql` as input.
--- - `|tee ~/odps_temp.sql<cr>` - Redirect the output to a file named `odps_temp.sql` in the home directory and also display it.
--- The phrase "新加坡odps" translates to "Singapore ODPS," which likely refers to the Alibaba Cloud's Open Data Processing Service (ODPS) in Singapore.
-    s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdsg -f temp.sql|tee ~/odps_temp.sql<cr>', "新加坡odps" },
-    -- s = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql|odpscmdsg -f temp.sql|tee ~/odps_temp.sql<cr>', "新加坡odps" },
-    t = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdtap -f temp.sql|tee ~/odps_temp.sql<cr>', "taptap北京odps" },
-    c = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdcn -f temp.sql|tee ~/odps_temp.sql<cr>', "CN北京odps" },
-    h = { ':<C-u>\'<,\'>w! temp.sql|split|terminal cat temp.sql&&odpscmdhk -f temp.sql|tee ~/odps_temp.sql<cr>', "香港odps" },
-    -- x = { 'y:<C-u>echo <C-r>%<cr>', "新加坡odps"}
+    s = {
+      function()
+        -- 生成带时间戳的文件名
+        local timestamp = os.date("%Y%m%d%H%M%S")
+        local filename = "temp_" .. timestamp .. ".sql"
+
+        -- 获取当前视觉选择的行或使用当前行
+        local start_line = vim.fn.line("'<")
+        local end_line = vim.fn.line("'>")
+
+        -- 将选定的行写入文件
+        vim.cmd(string.format("silent! execute '%d, %dw! %s'", start_line, end_line, filename))
+
+        -- 打开一个分屏终端并运行命令
+        local terminal_command =
+          string.format("split | terminal cat %s && odpscmdsg -f %s | tee ~/odps_temp.sql", filename, filename)
+        vim.cmd(terminal_command)
+      end,
+      "新加坡odps", -- 命令描述
+    },
+    t = {
+      function()
+        -- 生成带时间戳的文件名
+        local timestamp = os.date("%Y%m%d%H%M%S")
+        local filename = "temp_" .. timestamp .. ".sql"
+
+        -- 获取当前视觉选择的行或使用当前行
+        local start_line = vim.fn.line("'<")
+        local end_line = vim.fn.line("'>")
+
+        -- 将选定的行写入文件
+        vim.cmd(string.format("silent! execute '%d, %dw! %s'", start_line, end_line, filename))
+
+        -- 打开一个分屏终端并运行命令
+        local terminal_command =
+          string.format("split | terminal cat %s && odpscmdtap -f %s | tee ~/odps_temp.sql", filename, filename)
+        vim.cmd(terminal_command)
+      end,
+      "taptap北京odps", -- 命令描述
+    },
+    c = {
+      function()
+        -- 生成带时间戳的文件名
+        local timestamp = os.date("%Y%m%d%H%M%S")
+        local filename = "temp_" .. timestamp .. ".sql"
+
+        -- 获取当前视觉选择的行或使用当前行
+        local start_line = vim.fn.line("'<")
+        local end_line = vim.fn.line("'>")
+
+        -- 将选定的行写入文件
+        vim.cmd(string.format("silent! execute '%d, %dw! %s'", start_line, end_line, filename))
+
+        -- 打开一个分屏终端并运行命令
+        local terminal_command =
+          string.format("split | terminal cat %s && odpscmdcn -f %s | tee ~/odps_temp.sql", filename, filename)
+        vim.cmd(terminal_command)
+      end,
+      "CN北京odps", -- 命令描述
+    },
+    h = {
+      function()
+        -- 生成带时间戳的文件名
+        local timestamp = os.date("%Y%m%d%H%M%S")
+        local filename = "temp_" .. timestamp .. ".sql"
+
+        -- 获取当前视觉选择的行或使用当前行
+        local start_line = vim.fn.line("'<")
+        local end_line = vim.fn.line("'>")
+
+        -- 将选定的行写入文件
+        vim.cmd(string.format("silent! execute '%d, %dw! %s'", start_line, end_line, filename))
+
+        -- 打开一个分屏终端并运行命令
+        local terminal_command =
+          string.format("split | terminal cat %s && odpscmdhk -f %s | tee ~/odps_temp.sql", filename, filename)
+        vim.cmd(terminal_command)
+      end,
+      "香港odps", -- 命令描述
+    },
   },
   u = {
     name = "url encode/decode",
