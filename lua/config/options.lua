@@ -14,7 +14,6 @@ vim.opt.listchars = {
 }
 vim.opt.cursorline = false
 
-
 if vim.fn.has("nvim-0.10") == 1 then
   vim.opt.smoothscroll = true
   vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
@@ -24,3 +23,9 @@ else
   vim.opt.foldmethod = "indent"
   vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 end
+
+-- LSP Server to use for Python.
+-- Set to "basedpyright" to use basedpyright instead of pyright.
+vim.g.lazyvim_python_lsp = "pyright"
+-- Set to "ruff_lsp" to use the old LSP implementation version.
+vim.g.lazyvim_python_ruff = "ruff"

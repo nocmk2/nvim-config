@@ -81,6 +81,9 @@ local vmappings = {
         local timestamp = os.date("%Y%m%d%H%M%S")
         local filename = "temp_" .. timestamp .. ".sql"
 
+        -- 确保重新选择
+        vim.cmd("normal! gv")
+
         -- 获取当前视觉选择的行或使用当前行
         local start_line = vim.fn.line("'<")
         local end_line = vim.fn.line("'>")
@@ -100,6 +103,9 @@ local vmappings = {
         -- 生成带时间戳的文件名
         local timestamp = os.date("%Y%m%d%H%M%S")
         local filename = "temp_" .. timestamp .. ".sql"
+
+        -- 确保重新选择
+        vim.cmd("normal! gv")
 
         -- 获取当前视觉选择的行或使用当前行
         local start_line = vim.fn.line("'<")
@@ -121,6 +127,9 @@ local vmappings = {
         local timestamp = os.date("%Y%m%d%H%M%S")
         local filename = "temp_" .. timestamp .. ".sql"
 
+        -- 确保重新选择
+        vim.cmd("normal! gv")
+
         -- 获取当前视觉选择的行或使用当前行
         local start_line = vim.fn.line("'<")
         local end_line = vim.fn.line("'>")
@@ -141,9 +150,13 @@ local vmappings = {
         local timestamp = os.date("%Y%m%d%H%M%S")
         local filename = "temp_" .. timestamp .. ".sql"
 
+        -- 确保重新选择
+        vim.cmd("normal! gv")
+
         -- 获取当前视觉选择的行或使用当前行
         local start_line = vim.fn.line("'<")
         local end_line = vim.fn.line("'>")
+
 
         -- 将选定的行写入文件
         vim.cmd(string.format("silent! execute '%d, %dw! %s'", start_line, end_line, filename))
@@ -184,3 +197,5 @@ local vmappings = {
 
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)
+
+
