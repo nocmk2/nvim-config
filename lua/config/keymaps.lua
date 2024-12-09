@@ -10,6 +10,36 @@ if not status_ok then
   return
 end
 
+local function process_file()
+    local input_file = os.getenv("HOME") .. "/odps_temp.sql"
+    local output_file = os.getenv("HOME") .. "/odps_temp.md"
+
+    -- Read the file content
+    local lines = {}
+    for line in io.lines(input_file) do
+        table.insert(lines, line)
+    end
+
+    -- Remove the first and last lines
+    table.remove(lines, 1)  -- Remove the first line
+    table.remove(lines)      -- Remove the last line
+
+    -- Replace '+' with '|'
+    for i, line in ipairs(lines) do
+        lines[i] = line:gsub("%+", "|")
+    end
+
+    -- Write to the new .md file
+    local file = io.open(output_file, "w")
+    for _, line in ipairs(lines) do
+        file:write(line .. "\n")
+    end
+    file:close()
+
+    -- Open the new file in a vertical split
+    vim.cmd("vsplit " .. output_file)
+end
+
 local opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
@@ -25,6 +55,10 @@ local mappings = {
       "<cmd>r ~/odps_temp.sql<cr>",
       "Open Odps Result File",
     },
+    m = {
+      function() process_file() end,
+      "Open Odps Result File in Markdown",
+    }
   },
   i = {
     name = "Insert",
