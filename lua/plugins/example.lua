@@ -146,7 +146,7 @@ return {
         "json",
         "lua",
         "markdown",
-        "markdown_inline",
+        -- "markdown_inline",
         "python",
         "query",
         "regex",

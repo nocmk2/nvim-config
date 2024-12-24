@@ -7,6 +7,7 @@
 --
 vim.g.mapleader = ","
 vim.g.autoformat = false
+-- vim.opt.list = true
 vim.opt.listchars = {
   tab = "> ",
   trail = " ",

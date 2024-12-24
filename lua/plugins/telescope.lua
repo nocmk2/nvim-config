@@ -12,7 +12,7 @@ return {
     },
     opts = {
       defaults = {
-        path_display = { "smart" },
+        path_display = { "absolute" },
         prompt_prefix = "🔍 ", -- Customize the prompt prefix
         selection_caret = "➜ ", -- Customize the selection caret
         entry_prefix = "  ", -- Customize the entry prefix
