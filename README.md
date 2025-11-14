@@ -29,6 +29,7 @@
 ## 使用说明
 
 ### Java项目设置
+
 ```shell
 mvn eclipse:clean
 mvn eclipse:eclipse
@@ -41,9 +42,12 @@ mvn eclipse:eclipse
 ## 安装
 
 1. 克隆此仓库到您的Neovim配置目录：
+
 ```bash
 git clone https://github.com/your-username/your-repo.git ~/.config/nvim
 ```
+
+
 2. 启动Neovim，LazyVim将自动安装所需插件。
 
 ## 更多资源

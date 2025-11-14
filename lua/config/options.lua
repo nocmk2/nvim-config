@@ -33,4 +33,4 @@ vim.g.lazyvim_python_ruff = "ruff"
 
 -- for avante.lua
 -- views can only be fully collapsed with the global statusline
-vim.opt.laststatus = 3
+-- vim.opt.laststatus = 3

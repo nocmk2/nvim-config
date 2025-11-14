@@ -2,3 +2,4 @@
 require("config.lazy")
 -- Place this in your Neovim configuration (init.lua)
 vim.keymap.set('n', '\\', ',', { noremap = true, silent = true })
+vim.opt.shellcmdflag = '-ic'

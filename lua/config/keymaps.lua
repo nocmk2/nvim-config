@@ -72,6 +72,7 @@ which_key.register({
     s = { "y:<C-u>split|terminal odpscmdsg -f <C-r>%|tee ~/odps_temp.sql<cr>", "新加坡odps" },
     t = { "y:<C-u>split|terminal odpscmdtap -f <C-r>%|tee ~/odps_temp.sql<cr>", "taptap北京odps" },
     h = { "y:<C-u>split|terminal odpscmdhk -f <C-r>%|tee ~/odps_temp.sql<cr>", "taptap香港odps" },
+    a = { "y:<C-u>split|terminal odpscmdadplus -f <C-r>%|tee ~/odps_temp.sql<cr>", "adplus北京" }
   },
 })
 
@@ -140,6 +141,19 @@ which_key.register({
         vim.cmd(terminal_command)
       end,
       "香港odps",
+    },
+    a = {
+      function()
+        local timestamp = os.date("%Y%m%d%H%M%S")
+        local filename = "temp_" .. timestamp .. ".sql"
+        vim.cmd("normal! gv")
+        local start_line = vim.fn.line("'<")
+        local end_line = vim.fn.line("'>")
+        vim.cmd(string.format("silent! execute '%d, %dw! %s'", start_line, end_line, filename))
+        local terminal_command = string.format("split | terminal cat %s && odpscmdadplus -f %s | tee ~/odps_temp.sql", filename, filename)
+        vim.cmd(terminal_command)
+      end,
+      "adplus北京",
     },
   },
   eu = {
