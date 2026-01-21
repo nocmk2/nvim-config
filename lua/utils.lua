@@ -33,4 +33,5 @@ function M.get_visual_selection()
   return table.concat(lines, '\n')
 end
 
+
 return M
