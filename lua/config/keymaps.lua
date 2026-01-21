@@ -78,30 +78,7 @@ which_key.add({
   },
 })
 
-which_key.add({
-  {
-    mode = "v",
-    nowait = true,
-    remap = false,
-    silent = true,
-    { "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', desc = "Comment" },
-    { "<leader>sr", "<esc><cmd>'<,'>SnipRun<cr>", desc = "Run range" },
-    { "<leader>t", '10yl:r!date -r "<C-r>*" "+\\%Y-\\%m-\\%d\\% \\%H:\\%M:\\%S"<cr>', desc = "Timestamp Convert" },
-    { "<leader>m", 'y:r!python3 -c \'from datetime import datetime;print(datetime.strptime("<C-r>*","\\%Y-\\%m-\\%d \\%H:\\%M:\\%S").timestamp()*1000)\'<cr>', desc = "To Milli TimeStamp" },
-    { "<leader>o", group = "Odpscmd" },
-    { "<leader>oa", function() run_visual_odps("odpscmdadplus") end, desc = "adplus北京" },
-    { "<leader>oc", function() run_visual_odps("odpscmdcn") end, desc = "CN北京odps" },
-    { "<leader>oh", function() run_visual_odps("odpscmdhk") end, desc = "香港odps" },
-    { "<leader>os", function() run_visual_odps("odpscmdsg") end, desc = "新加坡odps" },
-    { "<leader>ot", function() run_visual_odps("odpscmdtap") end, desc = "taptap北京odps" },
-    { "<leader>eu", group = "url encode/decode" },
-    { "<leader>eud", "y:exec('r!tod -s urldecode ') . shellescape(\"<C-r>*\",1)<cr>", desc = "decode" },
-    { "<leader>eue", "y:exec('r!tod -s urlencode ') . shellescape('<C-r>*',1)<cr>", desc = "encode" },
-    { "<leader>l", group = "odps logview" },
-    { "<leader>lv", "y:exec('r!open https://logview.aliyun.com') . shellescape(\"<C-r>*\",1)<cr>", desc = "logview" },
-    { "<leader>j", group = "Java Code" },
-    { "<leader>jc", "<cmd>lua require('jdtls').extract_constant(true)<cr>", desc = "Extract Constant" },
-    { "<leader>jm", "<cmd>lua require('jdtls').extract_method(true)<cr>", desc = "Extract Method" },
-    { "<leader>jv", "<cmd>lua require('jdtls').extract_variable(true)<cr>", desc = "Extract Variable" },
-  },
-})
+vim.keymap.set("n", "<leader>fa", function()
+  require("telescope.builtin").find_files({ no_ignore = true, hidden = true })
+end, { desc = "Find All Files" })
+
