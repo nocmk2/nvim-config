@@ -9,8 +9,11 @@ return {
       auto_suggestions_provider = "gemini",
       providers = {
         gemini = {
-          model = "gemini-3-flash-preview",
+          model = "gemini-3.0-pro",
         },
+      },
+      behaviour = {
+        auto_suggestions = true,  -- Enable AI auto suggestions
       },
     },
     build = "make",
@@ -39,11 +42,9 @@ return {
         },
         ft = { "markdown", "Avante" },
       },
-      -- blink-cmp avante source
       "Kaiser-Yang/blink-cmp-avante",
     },
   },
-  -- Configure blink.cmp sources to include avante
   {
     "saghen/blink.cmp",
     optional = true,
