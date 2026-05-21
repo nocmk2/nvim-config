@@ -5,11 +5,14 @@ return {
     lazy = false,
     version = false,
     opts = {
-      provider = "gemini",
-      auto_suggestions_provider = "gemini",
+      provider = "openai",
+      auto_suggestions_provider = "openai",
       providers = {
-        gemini = {
-          model = "gemini-3.0-pro",
+        openai = {
+          model = "deepseek/deepseek-v4-flash",
+          -- 通过环境变量注入 internal endpoint，避免公开 repo 泄露内部地址
+          endpoint = os.getenv("LLM_ENDPOINT") or os.getenv("OPENAI_BASE_URL") or "http://localhost:11434/v1",
+          api_key_name = "OPENAI_API_KEY",
         },
       },
       behaviour = {

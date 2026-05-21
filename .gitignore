@@ -6,3 +6,12 @@ debug
 foo.*
 *.log
 data
+# Temporary files
+odps_temp.sql
+odps_temp.md
+temp_*.sql
+# Environment / secrets
+.env
+.env.local
+*.key
+secrets*
